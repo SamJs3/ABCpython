@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJANGO ABC</title>
+    <link rel="stylesheet" href="{% static 'main.css'%}">
+    
+</head>
+<body>
+<h1>Tasks</h1>
+<form action="/tasks/new/" method="POST">
+    {% csrf_token %} <!--tipo llave para validar que el formulario proviene de la pagina web-->
+    
+<!--Carnet, Nombres, Apellidos, correoElectronico, fechaNacimiento-->
+    <input type="text" name ="nombre" placeholder="Escribe tu nombre">  <!--name-->
+    <input type="text" name ="apellido" placeholder="Escribe tu apellido"> <!--apellido-->
+    <input type="text" name ="correoElectronico" placeholder="Escribe tu correo"> <!--correo-->
+    <input type="date" name ="fechaNacimiento" placeholder="Escribe tu fecha de Nacimiento"> <!--FechaNacimiento-->
+    
+    <button>Save</button>
+    
+</form>
+
+<!--lo siguiente nos sirve para mostrar en pantalla los datos que se han guardado-->
+<!--{% for task in tasks %}
+<div>
+    <h2>{{task.nombre}}</h2>
+    <h2>{{task.apellido}}</h2>
+    <h2>{{task.correoElectronico}}</h2>
+    <h2>{{task.fechaNacimiento}}</h2>
+    <form action="{% url 'delete_task' task.id %}" method="POST">
+        {% csrf_token %}
+    <button>Delete</button>    
+    </form>
+<div>    
+{% empty %}
+<h3> No hay registros aun </h3>
+
+{% endfor %}
+
+<!--aca termina lo que se muestra en pantalla-->
+
+<!--{% for task in tasks %}
+<div>
+    <h2>{{task.nombre}}</h2>
+    <h2>{{task.apellido}}</h2>
+    <h2>{{task.correoElectronico}}</h2>
+    <h2>{{task.fechaNacimiento}}</h2>
+    <a href="{% url 'update_task' task.id %}">Actualizar</a> <!-- Enlace a la página de actualización 
+    <form action="{% url 'delete_task' task.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Eliminar</button>
+    </form>
+</div>    
+{% empty %}
+<h3>No hay registros aún</h3>
+{% endfor %}
+-->
+{% for task in tasks %}
+<div>
+    <h2>{{task.nombre}}</h2>
+    <h2>{{task.apellido}}</h2>
+    <h2>{{task.correoElectronico}}</h2>
+    <h2>{{task.fechaNacimiento}}</h2>
+    <a href="{% url 'update_task' task.id %}">Actualizar</a> <!-- Enlace a la página de actualización -->
+    <form action="{% url 'delete_task' task.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Eliminar</button>
+    </form>
+</div>    
+{% empty %}
+<h3>No hay registros aún</h3>
+{% endfor %}
+
+<!-- Contenido para el formulario de actualización -->
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Actualizar</button>
+</form>
+
+
+</body>
+</html>
+
