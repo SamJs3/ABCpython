@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure--08-d*buah5n*uca#no-@$gx1e^df^0a$ih6&duy$jzf6^lqq3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.onrender.com']
 
 
 # Application definition
@@ -72,8 +72,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'djangoABC.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+#Database
+#https://docs.djangoproject.com/en/5.0/ref/settings/databases
 
 #DATABASES = {
 #    'default': {
@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'djangoABC.wsgi.application'
 #}
 
 DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+   "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 
